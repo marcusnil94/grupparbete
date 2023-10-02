@@ -59,12 +59,12 @@ public class MyFrame extends JFrame implements ActionListener {
         frame.setLayout(new BorderLayout(10,10));
         frame.setSize(500, 700);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
         frame.setResizable(false);
         frame.add(panelHeader,BorderLayout.NORTH);
         frame.add(panelLeft,BorderLayout.WEST);
         frame.add(panelRight,BorderLayout.EAST);
         frame.add(panelBottom,BorderLayout.SOUTH);
+        frame.setVisible(true);
         
 
 
