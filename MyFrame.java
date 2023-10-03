@@ -24,6 +24,7 @@ public class MyFrame extends JFrame implements ActionListener {
         addBtn.addActionListener(e -> System.out.println("Lägger till ny ToDo"));
         exitBtn = new JButton("Avsluta");
         exitBtn.addActionListener(e -> System.out.println("Avsluta"));
+        exitBtn.addActionListener(e -> System.exit(0));
         editBtn = new JButton("Edit");
         editBtn.addActionListener(e -> System.out.println("Edit"));
         doneBtn = new JButton("Done");
