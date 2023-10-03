@@ -81,6 +81,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         // Anrop för att avsluta. Ej klar. ****TEST*****
         if (e.getSource() == exitBtn) {
             System.out.println("Händer jag då?");
+            System.exit(0);
         }
     }
 }
