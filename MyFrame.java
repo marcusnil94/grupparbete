@@ -6,9 +6,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JTextArea; 
 
 public class MyFrame extends JFrame implements ActionListener {
-
+    JTextField textField; 
+    JTextArea textArea; //  JTextArea för att visa ToDo-listan
     JButton exitBtn;
     JButton toDoBtn;
     JButton addBtn;
@@ -16,27 +19,36 @@ public class MyFrame extends JFrame implements ActionListener {
     JButton doneBtn;
     JButton historyBtn;
     JFrame frame;
-    
 
-    MyFrame(){
+    MyFrame() {
+        textField = new JTextField(20); // Textinmatning komponent
+        textArea = new JTextArea(32, 15); // //Visnings komponent av texten
 
-        addBtn = new JButton("Lägg till Todo");
-        addBtn.addActionListener(e -> System.out.println("Lägger till ny ToDo"));
-        exitBtn = new JButton("Avsluta");
+       
+
+        JButton addBtn = new JButton("Lägg till Todo");
+        addBtn.addActionListener(e -> {
+            String todoText = textField.getText();
+            textArea.append(todoText);
+            textField.setText(""); // Rensar textfält efter man har lagt en ny to do.
+        });
+
+        JButton exitBtn = new JButton("Avsluta");
         exitBtn.addActionListener(e -> System.out.println("Avsluta"));
-        editBtn = new JButton("Edit");
-        editBtn.addActionListener(e -> System.out.println("Edit"));
-        doneBtn = new JButton("Done");
+        JButton editBtn = new JButton("Edit");
+        editBtn.addActionListener(e -> {
+            String editedText = textField.getText();
+            textArea.setText(editedText);
+        });
+        JButton doneBtn = new JButton("Done");
         doneBtn.addActionListener(e -> System.out.println("Done"));
-        historyBtn = new JButton("Historik");
-        historyBtn.addActionListener(this);
-        historyBtn.addActionListener(e -> System.out.println("Historik")); 
-        
+        JButton historyBtn = new JButton("Historik");
+        historyBtn.addActionListener(e -> System.out.println("Historik"));
 
         JPanel panelHeader = new JPanel();
-        JPanel panelLeft = new JPanel(); 
+        JPanel panelLeft = new JPanel();
         JPanel panelRight = new JPanel();
-        JPanel panelBottom = new JPanel(); 
+        JPanel panelBottom = new JPanel();
 
         panelHeader.setPreferredSize(new Dimension(500, 60));
         panelLeft.setPreferredSize(new Dimension(280, 380));
@@ -45,31 +57,33 @@ public class MyFrame extends JFrame implements ActionListener {
 
         panelLeft.setBackground(Color.GREEN);
         panelHeader.setBackground(Color.GRAY);
-        panelRight.setBackground(Color.red);
+        panelRight.setBackground(Color.RED);
         panelBottom.setBackground(Color.LIGHT_GRAY);
 
+        panelHeader.add(textField);
         panelHeader.add(addBtn);
         panelBottom.add(exitBtn);
         panelRight.add(editBtn);
         panelRight.add(doneBtn);
         panelBottom.add(historyBtn);
-
+        panelLeft.add(textArea);
+        
         frame = new JFrame();
+
         frame.setTitle("Att göra, Grupp 4");
-        frame.setLayout(new BorderLayout(10,10));
+        frame.setLayout(new BorderLayout(10, 10));
         frame.setSize(500, 700);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.add(panelHeader,BorderLayout.NORTH);
-        frame.add(panelLeft,BorderLayout.WEST);
-        frame.add(panelRight,BorderLayout.EAST);
-        frame.add(panelBottom,BorderLayout.SOUTH);
+       
+
+        frame.add(panelHeader, BorderLayout.NORTH);
+        frame.add(panelLeft, BorderLayout.WEST);
+        frame.add(panelRight, BorderLayout.EAST);
+        frame.add(panelBottom, BorderLayout.SOUTH);
         frame.setVisible(true);
-        
 
-
-
-}
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -79,8 +93,5 @@ public class MyFrame extends JFrame implements ActionListener {
             HaveDoneFrame haveDoneFrame = new HaveDoneFrame();
             
         }
-    
-        //throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
-
+}
 }
