@@ -6,9 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class MyFrame extends JFrame implements ActionListener {
 
+    JTextField textField;
+    JTextArea textArea;
     JButton exitBtn;
     JButton toDoBtn;
     JButton addBtn;
@@ -19,9 +23,17 @@ public class MyFrame extends JFrame implements ActionListener {
     
 
     MyFrame(){
+        textField = new JTextField(20); // Textinmatning komponent
+        textArea = new JTextArea(32, 15); // //Visnings komponent av texten
+
+
 
         addBtn = new JButton("Lägg till Todo");
-        addBtn.addActionListener(e -> System.out.println("Lägger till ny ToDo"));
+        addBtn.addActionListener(e -> {
+            String todoText = textField.getText();
+            textArea.append(todoText);
+            textField.setText(""); // Rensar textfält efter man har lagt en ny to do.
+        });
         exitBtn = new JButton("Avsluta");
         exitBtn.addActionListener(e -> System.out.println("Avsluta"));
         exitBtn.addActionListener(e -> System.exit(0));
@@ -54,6 +66,9 @@ public class MyFrame extends JFrame implements ActionListener {
         panelRight.add(editBtn);
         panelRight.add(doneBtn);
         panelBottom.add(historyBtn);
+        panelHeader.add(textField);
+        panelLeft.add(textArea);
+
 
         frame = new JFrame();
         frame.setTitle("Att göra, Grupp 4");
