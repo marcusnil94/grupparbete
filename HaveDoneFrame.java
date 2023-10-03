@@ -4,8 +4,11 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 
 public class HaveDoneFrame extends JFrame implements ActionListener {
@@ -14,7 +17,14 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
     JButton toDoBtn;
     JFrame frame;
 
+    static DefaultListModel <String>historyListModel;
+    JList <String> historyList;
+
     HaveDoneFrame() {
+
+        //Plockar modellen till listan från listan i lista för att få rätt element.
+        /*historyListModel = Lista.getHistoryListModel();
+        historyList = new JList<>(historyListModel);*/
 
         // Skapar knappar
         toDoBtn = new JButton("To Do");
@@ -28,6 +38,11 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         JPanel panelHeader = new JPanel();
         JPanel panelLeft = new JPanel();
         JPanel panelBottom = new JPanel();
+
+        //lägger till upddaterade listan i panelLeft och uppdaterar fönstret
+        /*panelLeft.add(historyList);
+        panelLeft.revalidate();
+        panelLeft.repaint();*/
 
         // Bestämmer storlek på panelerna
         panelHeader.setPreferredSize(new Dimension(500, 60));
@@ -81,6 +96,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         // Anrop för att avsluta. Ej klar. ****TEST*****
         if (e.getSource() == exitBtn) {
             System.out.println("Händer jag då?");
+            System.exit(0);
         }
     }
 }

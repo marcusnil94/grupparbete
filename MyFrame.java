@@ -79,7 +79,18 @@ public class MyFrame extends JFrame implements ActionListener {
             HaveDoneFrame haveDoneFrame = new HaveDoneFrame();
             
         }
-    
+        
+        //Flyttar markerat element från MyFrame till Listan i lista och tar bort det
+        /*if (e.getSource() == doneBtn) {
+            int selectedIndex = list1.getSelectedIndex();
+            if (selectedIndex != -1) {
+                System.out.println("Flytta Att Göra Nr : " + (selectedIndex+1));
+                Lista.moveToHaveDoneFrame(list1);
+            } else {
+                System.out.println("inget index");
+            }
+            
+        }*/
         //throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
 
