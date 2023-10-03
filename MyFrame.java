@@ -3,8 +3,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -12,43 +15,56 @@ import javax.swing.JTextField;
 public class MyFrame extends JFrame implements ActionListener {
 
     JTextField textField;
-    JTextArea textArea;
+    //JTextArea textArea;
     JButton exitBtn;
     JButton toDoBtn;
     JButton addBtn;
     JButton editBtn;
     JButton doneBtn;
     JButton historyBtn;
+    JButton editTodoBtn;
+    JPanel panelLeft;
     JFrame frame;
+    JPanel panelRight;
+    JTextField editTextField;
+    public static JList <String>todoList;
+    public static DefaultListModel <String> todoListModel;
     
 
     MyFrame(){
         textField = new JTextField(20); // Textinmatning komponent
-        textArea = new JTextArea(32, 15); // //Visnings komponent av texten
-
+        //textArea = new JTextArea(32, 15); // //Visnings komponent av texten
+        todoListModel = Lista.getMyFrameListModel();
+        todoList = new JList<>(todoListModel);
 
 
         addBtn = new JButton("Lägg till Todo");
-        addBtn.addActionListener(e -> {
-            String todoText = textField.getText();
-            textArea.append(todoText);
-            textField.setText(""); // Rensar textfält efter man har lagt en ny to do.
-        });
+        addBtn.addActionListener(this);
+            
+            
+        
         exitBtn = new JButton("Avsluta");
         exitBtn.addActionListener(e -> System.out.println("Avsluta"));
         exitBtn.addActionListener(e -> System.exit(0));
+        
         editBtn = new JButton("Edit");
-        editBtn.addActionListener(e -> System.out.println("Edit"));
+        editBtn.addActionListener(this);
+        
         doneBtn = new JButton("Done");
-        doneBtn.addActionListener(e -> System.out.println("Done"));
+        doneBtn.addActionListener(this);
+        
         historyBtn = new JButton("Historik");
         historyBtn.addActionListener(this);
-        historyBtn.addActionListener(e -> System.out.println("Historik")); 
-        
+        //historyBtn.addActionListener(e -> System.out.println("Historik")); 
 
+        editTodoBtn = new JButton("Confirm");
+        editTodoBtn.addActionListener(this);
+        //editTodoBtn.addActionListener(e -> System.out.println("edit Todo"));
+        
         JPanel panelHeader = new JPanel();
-        JPanel panelLeft = new JPanel(); 
-        JPanel panelRight = new JPanel();
+        panelLeft = new JPanel(); 
+        
+        panelRight = new JPanel();
         JPanel panelBottom = new JPanel(); 
 
         panelHeader.setPreferredSize(new Dimension(500, 60));
@@ -67,9 +83,8 @@ public class MyFrame extends JFrame implements ActionListener {
         panelRight.add(doneBtn);
         panelBottom.add(historyBtn);
         panelHeader.add(textField);
-        panelLeft.add(textArea);
-
-
+        panelLeft.add(todoList);
+        
         frame = new JFrame();
         frame.setTitle("Att göra, Grupp 4");
         frame.setLayout(new BorderLayout(10,10));
@@ -85,29 +100,73 @@ public class MyFrame extends JFrame implements ActionListener {
 
 
 
-}
+}   
+    //********KNAPPFUNKTIONER*******/
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        //historyBtn för att byta till HaveDoneFrame
         if(e.getSource()==historyBtn) {
-            System.out.println("händer jag?");
+            System.out.println("HaveDoneFrame");
             frame.dispose();
             HaveDoneFrame haveDoneFrame = new HaveDoneFrame();
-            
         }
-        
-        //Flyttar markerat element från MyFrame till Listan i lista och tar bort det
-        /*if (e.getSource() == doneBtn) {
-            int selectedIndex = list1.getSelectedIndex();
+        //addBtn för att lägga till ny Todo som ett element i "myFrameListModel" i klassen Lista.
+        else if (e.getSource() == addBtn) {
+            Lista.myFrameListModel.addElement(textField.getText());
+            textField.setText(""); // Rensar textfält efter man har lagt en ny to do.
+        }
+        //doneBtn för att flytta Todo från MyFrame till HaveDoneFrame.
+        //När ett index är markerat och 0 eller över kallar man på metoden i klassen Lista.
+        else if (e.getSource() == doneBtn) {
+            int selectedIndex = todoList.getSelectedIndex();
             if (selectedIndex != -1) {
-                System.out.println("Flytta Att Göra Nr : " + (selectedIndex+1));
-                Lista.moveToHaveDoneFrame(list1);
+                System.out.println("Flytta Att Göra Nr : " + (selectedIndex) + " Till Historik");
+                Lista.moveToHaveDoneFrame(todoList);
             } else {
                 System.out.println("inget index");
             }
-            
-        }*/
-        //throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
+        }
+        /*editBtn för att redigera Todos. Samma princip som föregående och här läggs även
+        TextFielden "editTextField" och knappen "editTodoBtn" till i panelRight.
 
+        */
+        else if (e.getSource() == editBtn) {
+            int selectedIndexTodo = todoList.getSelectedIndex();
+            if (selectedIndexTodo != -1) {
+                editTextField = new JTextField(10);
+                panelRight.add(editTextField);
+                panelRight.add(editTodoBtn);
+                editTodoBtn.addActionListener(this);//behövs en Actionlistener för den nya knappen
+                //Uppdaterar ädringar i panelen
+                panelRight.revalidate();
+                panelRight.repaint();
+                System.out.println("Edit Att Göra Nr : " + (selectedIndexTodo));
+            }
+        }
+        /*Samma princip som övriga knappar som läser av index sen en ytterligare if som kollar så inte 
+        textFieldet är empty. Kanske vill vi ha en else del här? och/eller en avbryt funktion? 
+        */
+        else if (e.getSource() == editTodoBtn) {
+            int selectedIndexTodo = todoList.getSelectedIndex();
+            if(selectedIndexTodo != -1) {
+                String edit = editTextField.getText();
+                if(!edit.isEmpty()) {
+                    todoListModel.setElementAt(edit, selectedIndexTodo);
+                    editTextField.setText("");
+                    //tar bort de tillagda funktionerna och uppdaterar panelRight efter redigerad todo
+                    panelRight.remove(editTextField);
+                    panelRight.remove(editTodoBtn);
+                    panelRight.revalidate();
+                    panelRight.repaint();
+                System.out.println("Confirm Edit Att Göra Nr : " + (selectedIndexTodo));
+                }     
+            }
+        }
+    } 
 }
+                
+        //throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+    
+
