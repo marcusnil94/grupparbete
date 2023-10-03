@@ -4,49 +4,45 @@ import javax.swing.JList;
 
 public class Lista {
 
-    //random hittepålista
-    public static JList addList(JList list,DefaultListModel model) {
-        
-        DefaultListModel <String> listModel = new DefaultListModel<>();
-        JList <String> list1 = new JList (listModel);
-
-        listModel.addElement("Attgöra1");
-        listModel.addElement("Attgöra2");
-        listModel.addElement("Attgöra3");
-        listModel.addElement("Attgöra4");
-        listModel.addElement("Attgöra5");
+    // Spara modellen för listorna i denna klassen(eller någon annan förutom HaveDoneFrame eller MyFrame), 
+    // annars blev det problem när man ritade om fönstren.
     
-    return list1;
-    }
+    //model för HaveDoneFrame listan
+    public static DefaultListModel<String> haveDoneFrameListModel = new DefaultListModel<>();
+
+    //model för MyFrame listan
+    public static DefaultListModel<String> myFrameListModel = new DefaultListModel <>();
+    
     
     /******Metod för att flytta element från en lista till en annan lista*****
-    Är index över 0 läggs det markerade indexet till i element och sedan i "historyListModel"
-    och tar också bort det från den gamla listan.*/
+    Är index över 0 läggs det markerade indexet till i Stringen element och sedan som ett nytt "element" i "haveDoneFrameListModel"
+    och tar också bort det markerade elementet från den gamla listan.*/
 
     public static void moveToHaveDoneFrame (JList list){
-        String element = "";
+        String selectedElement = "";
         int selectedIndex = list.getSelectedIndex();
          
         if (list.getSelectedIndex() != -1) {
-            element = "Element: " + list.getSelectedValue();
-            DefaultListModel<String> model = (DefaultListModel<String>) list.getModel();
+            selectedElement = (String)list.getSelectedValue();
+            DefaultListModel<String> model = myFrameListModel; //Väljer model för listan
+            //Tar bort det markerade indexet från "myFrameListModel" och lägger till i "haveDoneFrameListModel"
             model.remove(selectedIndex);
-            historyListModel.addElement(element);
-            
+            haveDoneFrameListModel.addElement(selectedElement);
         } else
         System.out.println("No element");
     }
 
-    //historiklistan
-    private static DefaultListModel<String> historyListModel = new DefaultListModel<>();
-    
-    //denna metod för att få rätt list model till HasDoneFrame
-    public static DefaultListModel<String> getHistoryListModel() {
-    return historyListModel;
+    //denna metod för att få rätt list model till HasDoneFrame listan
+    public static DefaultListModel<String> getHaveDoneFrameListModel() {
+    return haveDoneFrameListModel;
+    }
+    //kalla på denna metod som model för MyFrame listan
+    public static DefaultListModel<String> getMyFrameListModel() {
+    return myFrameListModel;
     }
 
     /*public static void addToHistoryList (String element) {
-        historyListModel.addElement(element);
+        haveDoneFrameListModel.addElement(element);
 
     }*/
 

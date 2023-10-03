@@ -17,19 +17,20 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
     JButton toDoBtn;
     JFrame frame;
 
-    static DefaultListModel <String>historyListModel;
-    JList <String> historyList;
+    public static DefaultListModel <String>historyListModel;
+    public static JList <String> historyList;
 
     HaveDoneFrame() {
 
         //Plockar modellen till listan från listan i lista för att få rätt element.
-        /*historyListModel = Lista.getHistoryListModel();
-        historyList = new JList<>(historyListModel);*/
+        historyListModel = Lista.getHaveDoneFrameListModel();
+        historyList = new JList<>(historyListModel);
 
         // Skapar knappar
         toDoBtn = new JButton("To Do");
-        toDoBtn.addActionListener(e -> System.out.println("Sker To Do?"));
+       // toDoBtn.addActionListener(e -> System.out.println("Skapar Ny Todo"));
         toDoBtn.addActionListener(this);
+
         exitBtn = new JButton("Avsluta");
         exitBtn.addActionListener(e -> System.out.println("Sker Avsluta?"));
         exitBtn.addActionListener(this);
@@ -40,9 +41,9 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         JPanel panelBottom = new JPanel();
 
         //lägger till upddaterade listan i panelLeft och uppdaterar fönstret
-        /*panelLeft.add(historyList);
+        panelLeft.add(historyList);
         panelLeft.revalidate();
-        panelLeft.repaint();*/
+        panelLeft.repaint();
 
         // Bestämmer storlek på panelerna
         panelHeader.setPreferredSize(new Dimension(500, 60));
@@ -88,7 +89,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Anropar Dennis MyFrame
         if (e.getSource() == toDoBtn) {
-            System.out.println("händer jag?");
+            System.out.println("MyFrame");
             frame.dispose();
             MyFrame newMyFrame = new MyFrame();
             
