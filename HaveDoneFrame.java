@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -17,6 +18,10 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
     JButton toDoBtn;
     JFrame frame;
 
+    ImageIcon frameIcon = new ImageIcon("ikoner/grupp4Icon.png");
+    ImageIcon homeIcon = new ImageIcon("ikoner/homeIcon.png");
+    ImageIcon exitIcon = new ImageIcon("ikoner/exitIcon.png");
+
     public static DefaultListModel <String>historyListModel;
     public static JList <String> historyList;
 
@@ -27,12 +32,12 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         historyList = new JList<>(historyListModel);
 
         // Skapar knappar
-        toDoBtn = new JButton("To Do");
+        toDoBtn = new JButton("Hem");
        // toDoBtn.addActionListener(e -> System.out.println("Skapar Ny Todo"));
         toDoBtn.addActionListener(this);
 
         exitBtn = new JButton("Avsluta");
-        exitBtn.addActionListener(e -> System.out.println("Sker Avsluta?"));
+        //exitBtn.addActionListener(e -> System.out.println("Sker Avsluta?"));
         exitBtn.addActionListener(this);
 
         // Skapar paneler
@@ -66,12 +71,17 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         panelBottom.add(toDoBtn);
         panelBottom.add(exitBtn);
 
+         // Lägger till ikoner
+        toDoBtn.setIcon(homeIcon);
+        exitBtn.setIcon(exitIcon);
+
         // Ritar ut frame
         frame = new JFrame();
         frame.setTitle("Har Gjort, Grupp 4");
         frame.setLayout(new BorderLayout(10, 10));
         frame.setSize(500, 700);
         frame.setResizable(false);
+        frame.setIconImage(frameIcon.getImage());
 
         // Avslutar med X(windows) Röd knapp(mac)
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,14 +99,14 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Anropar Dennis MyFrame
         if (e.getSource() == toDoBtn) {
-            System.out.println("MyFrame");
+            //System.out.println("MyFrame");
             frame.dispose();
             MyFrame newMyFrame = new MyFrame();
             
         }
         // Anrop för att avsluta. Ej klar. ****TEST*****
         if (e.getSource() == exitBtn) {
-            System.out.println("Händer jag då?");
+            //System.out.println("Händer jag då?");
             System.exit(0);
         }
     }

@@ -1,10 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -29,6 +31,14 @@ public class MyFrame extends JFrame implements ActionListener {
     JTextField editTextField;
     public static JList <String>todoList;
     public static DefaultListModel <String> todoListModel;
+
+    // Ikoner till funktioner och frame
+    ImageIcon frameIcon = new ImageIcon("ikoner/grupp4Icon.png");
+    ImageIcon addIcon = new ImageIcon("ikoner/addIcon.png");
+    ImageIcon doneIcon = new ImageIcon("ikoner/doneIcon.png");
+    ImageIcon editIcon = new ImageIcon("ikoner/editIcon.png");
+    ImageIcon historyIcon = new ImageIcon("ikoner/historyIcon.png");
+    ImageIcon exitIcon = new ImageIcon("ikoner/exitIcon.png");
     
 
     MyFrame(){
@@ -49,15 +59,17 @@ public class MyFrame extends JFrame implements ActionListener {
         
         editBtn = new JButton("Edit");
         editBtn.addActionListener(this);
+        editBtn.setPreferredSize(new Dimension(190, 200));
         
         doneBtn = new JButton("Done");
         doneBtn.addActionListener(this);
+        doneBtn.setPreferredSize(new Dimension(190, 200));
         
         historyBtn = new JButton("Historik");
         historyBtn.addActionListener(this);
         //historyBtn.addActionListener(e -> System.out.println("Historik")); 
 
-        editTodoBtn = new JButton("Confirm");
+        editTodoBtn = new JButton("Edit");
         editTodoBtn.addActionListener(this);
         //editTodoBtn.addActionListener(e -> System.out.println("edit Todo"));
         
@@ -71,6 +83,7 @@ public class MyFrame extends JFrame implements ActionListener {
         panelLeft.setPreferredSize(new Dimension(280, 380));
         panelRight.setPreferredSize(new Dimension(200, 380));
         panelBottom.setPreferredSize(new Dimension(500, 60));
+        panelBottom.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
         panelLeft.setBackground(Color.GREEN);
         panelHeader.setBackground(Color.GRAY);
@@ -78,12 +91,19 @@ public class MyFrame extends JFrame implements ActionListener {
         panelBottom.setBackground(Color.LIGHT_GRAY);
 
         panelHeader.add(addBtn);
-        panelBottom.add(exitBtn);
         panelRight.add(editBtn);
         panelRight.add(doneBtn);
         panelBottom.add(historyBtn);
+        panelBottom.add(exitBtn);
         panelHeader.add(textField);
         panelLeft.add(todoList);
+
+        // Adderar ikoner
+        addBtn.setIcon(addIcon);
+        doneBtn.setIcon(doneIcon);
+        editBtn.setIcon(editIcon);
+        exitBtn.setIcon(exitIcon);
+        historyBtn.setIcon(historyIcon);
         
         frame = new JFrame();
         frame.setTitle("Att göra, Grupp 4");
@@ -95,6 +115,7 @@ public class MyFrame extends JFrame implements ActionListener {
         frame.add(panelLeft,BorderLayout.WEST);
         frame.add(panelRight,BorderLayout.EAST);
         frame.add(panelBottom,BorderLayout.SOUTH);
+        frame.setIconImage(frameIcon.getImage());
         frame.setVisible(true);
         
 
