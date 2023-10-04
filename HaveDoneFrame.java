@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class HaveDoneFrame extends JFrame implements ActionListener {
-   
+
     JButton exitBtn;
     JButton toDoBtn;
     JFrame frame;
@@ -23,25 +23,24 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
     ImageIcon homeIcon = new ImageIcon("ikoner/homeIcon.png");
     ImageIcon exitIcon = new ImageIcon("ikoner/exitIcon.png");
 
-    public static DefaultListModel <String>historyListModel;
-    public static JList <String> historyList;
+    public static DefaultListModel<String> historyListModel;
+    public static JList<String> historyList;
 
     HaveDoneFrame() {
 
-        //Plockar modellen till listan från listan i lista för att få rätt element.
+        // Plockar modellen till listan från listan i lista för att få rätt element.
         historyListModel = Lista.getHaveDoneFrameListModel();
         historyList = new JList<>(historyListModel);
-        JScrollPane scrollHistory =new JScrollPane(historyList);
-        scrollHistory.setPreferredSize(new Dimension (400, 510));
-
+        JScrollPane scrollHistory = new JScrollPane(historyList);
+        scrollHistory.setPreferredSize(new Dimension(400, 510));
 
         // Skapar knappar
         toDoBtn = new JButton("Hem");
-       // toDoBtn.addActionListener(e -> System.out.println("Skapar Ny Todo"));
+        // toDoBtn.addActionListener(e -> System.out.println("Skapar Ny Todo"));
         toDoBtn.addActionListener(this);
 
         exitBtn = new JButton("Avsluta");
-        //exitBtn.addActionListener(e -> System.out.println("Sker Avsluta?"));
+        // exitBtn.addActionListener(e -> System.out.println("Sker Avsluta?"));
         exitBtn.addActionListener(this);
 
         // Skapar paneler
@@ -49,7 +48,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         JPanel panelLeft = new JPanel();
         JPanel panelBottom = new JPanel();
 
-        //lägger till upddaterade listan i panelLeft och uppdaterar fönstret
+        // lägger till upddaterade listan i panelLeft och uppdaterar fönstret
         panelLeft.add(scrollHistory);
         panelLeft.revalidate();
         panelLeft.repaint();
@@ -75,7 +74,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         panelBottom.add(toDoBtn);
         panelBottom.add(exitBtn);
 
-         // Lägger till ikoner
+        // Lägger till ikoner
         toDoBtn.setIcon(homeIcon);
         exitBtn.setIcon(exitIcon);
 
@@ -95,6 +94,9 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         frame.add(panelLeft, BorderLayout.WEST);
         frame.add(panelBottom, BorderLayout.SOUTH);
 
+        // Sätter frame till mitten av skärmen
+        frame.setLocationRelativeTo(null);
+
         // Gör frame synlig
         frame.setVisible(true);
     }
@@ -103,14 +105,14 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Anropar Dennis MyFrame
         if (e.getSource() == toDoBtn) {
-            //System.out.println("MyFrame");
+            // System.out.println("MyFrame");
             frame.dispose();
             MyFrame newMyFrame = new MyFrame();
-            
+
         }
         // Anrop för att avsluta. Ej klar. ****TEST*****
         if (e.getSource() == exitBtn) {
-            //System.out.println("Händer jag då?");
+            // System.out.println("Händer jag då?");
             System.exit(0);
         }
     }
