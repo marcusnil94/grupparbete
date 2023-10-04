@@ -154,8 +154,9 @@ public class MyFrame extends JFrame implements ActionListener {
         */
         else if (e.getSource() == editBtn) {
             int selectedIndexTodo = todoList.getSelectedIndex();
-            if (editTextField != null)
+            if (editTextField != null){
             panelRight.remove(editTextField);
+            }
                 if (selectedIndexTodo != -1) {
                     editTextField = new JTextField(10);
                     panelRight.add(editTextField);
