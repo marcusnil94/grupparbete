@@ -75,7 +75,6 @@ public class MyFrame extends JFrame implements ActionListener {
         
         JPanel panelHeader = new JPanel();
         panelLeft = new JPanel(); 
-        
         panelRight = new JPanel();
         JPanel panelBottom = new JPanel(); 
 
@@ -155,17 +154,19 @@ public class MyFrame extends JFrame implements ActionListener {
         */
         else if (e.getSource() == editBtn) {
             int selectedIndexTodo = todoList.getSelectedIndex();
-            if (selectedIndexTodo != -1) {
-                editTextField = new JTextField(10);
-                panelRight.add(editTextField);
-                panelRight.add(editTodoBtn);
-                editTodoBtn.addActionListener(this);//behövs en Actionlistener för den nya knappen
-                //Uppdaterar ädringar i panelen
-                panelRight.revalidate();
-                panelRight.repaint();
-                System.out.println("Edit Att Göra Nr : " + (selectedIndexTodo));
+            if (editTextField != null)
+            panelRight.remove(editTextField);
+                if (selectedIndexTodo != -1) {
+                    editTextField = new JTextField(10);
+                    panelRight.add(editTextField);
+                    panelRight.add(editTodoBtn);
+                    editTodoBtn.addActionListener(this);//behövs en Actionlistener för den nya knappen
+                    //Uppdaterar ädringar i panelen
+                    panelRight.revalidate();
+                    panelRight.repaint();
+                    System.out.println("Edit Att Göra Nr : " + (selectedIndexTodo));
+                }
             }
-        }
         /*Samma princip som övriga knappar som läser av index sen en ytterligare if som kollar så inte 
         textFieldet är empty. Kanske vill vi ha en else del här? och/eller en avbryt funktion? 
         */
