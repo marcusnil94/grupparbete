@@ -11,8 +11,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
 
 public class MyFrame extends JFrame implements ActionListener {
 
@@ -46,7 +48,8 @@ public class MyFrame extends JFrame implements ActionListener {
         //textArea = new JTextArea(32, 15); // //Visnings komponent av texten
         todoListModel = Lista.getMyFrameListModel();
         todoList = new JList<>(todoListModel);
-
+        JScrollPane scroll = new JScrollPane(todoList);
+        scroll.setPreferredSize(new Dimension(270, 510));
 
         addBtn = new JButton("Lägg till Todo");
         addBtn.addActionListener(this);
@@ -85,7 +88,7 @@ public class MyFrame extends JFrame implements ActionListener {
         panelBottom.setPreferredSize(new Dimension(500, 60));
         panelBottom.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-        panelLeft.setBackground(Color.GREEN);
+        panelLeft.setBackground(Color.white);
         panelHeader.setBackground(Color.GRAY);
         panelRight.setBackground(Color.red);
         panelBottom.setBackground(Color.LIGHT_GRAY);
@@ -96,7 +99,7 @@ public class MyFrame extends JFrame implements ActionListener {
         panelBottom.add(historyBtn);
         panelBottom.add(exitBtn);
         panelHeader.add(textField);
-        panelLeft.add(todoList);
+        panelLeft.add(scroll);
 
         // Adderar ikoner
         addBtn.setIcon(addIcon);

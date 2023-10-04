@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class HaveDoneFrame extends JFrame implements ActionListener {
    
@@ -30,6 +31,9 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         //Plockar modellen till listan från listan i lista för att få rätt element.
         historyListModel = Lista.getHaveDoneFrameListModel();
         historyList = new JList<>(historyListModel);
+        JScrollPane scrollHistory =new JScrollPane(historyList);
+        scrollHistory.setPreferredSize(new Dimension (400, 510));
+
 
         // Skapar knappar
         toDoBtn = new JButton("Hem");
@@ -46,7 +50,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         JPanel panelBottom = new JPanel();
 
         //lägger till upddaterade listan i panelLeft och uppdaterar fönstret
-        panelLeft.add(historyList);
+        panelLeft.add(scrollHistory);
         panelLeft.revalidate();
         panelLeft.repaint();
 
@@ -56,7 +60,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         panelBottom.setPreferredSize(new Dimension(500, 60));
 
         // Bestämmer färger på panels
-        panelLeft.setBackground(Color.GREEN);
+        panelLeft.setBackground(Color.white);
         panelHeader.setBackground(Color.GRAY);
         panelBottom.setBackground(Color.LIGHT_GRAY);
 
