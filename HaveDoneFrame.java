@@ -20,7 +20,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
     JButton exitBtn;
     JButton toDoBtn;
     JFrame frame;
-    JLabel historyTitle;    
+    JLabel historyTitle;
 
     ImageIcon frameIcon = new ImageIcon("ikoner/grupp4Icon.png");
     ImageIcon homeIcon = new ImageIcon("ikoner/homeIcon.png");
@@ -36,7 +36,8 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         historyList = new JList<>(historyListModel);
         JScrollPane scrollHistory = new JScrollPane(historyList);
         scrollHistory.setPreferredSize(new Dimension(400, 510));
-        historyList.setFont(new Font("sans serif",Font.BOLD, 17));
+        scrollHistory.setBorder(null);
+        historyList.setFont(new Font("sans serif", Font.BOLD, 17));
 
         // Skapar knappar
         toDoBtn = new JButton("Hem");
@@ -52,7 +53,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         JPanel panelLeft = new JPanel();
         JPanel panelBottom = new JPanel();
 
-        //Text för header
+        // Text för header
         historyTitle = new JLabel("Avklarade uppgifter");
         historyTitle.setFont(new Font("serif", Font.PLAIN, 33));
         panelHeader.add(historyTitle);
@@ -68,9 +69,9 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         panelBottom.setPreferredSize(new Dimension(500, 60));
 
         // Bestämmer färger på panels
-        panelLeft.setBackground(Color.white);
-        panelHeader.setBackground(new Color(196,220,202));
-        panelBottom.setBackground(new Color(196,220,202));
+        panelLeft.setBackground(new Color(235, 240, 228));
+        panelHeader.setBackground(new Color(196, 220, 202));
+        panelBottom.setBackground(new Color(196, 220, 202));
 
         // Tar bort markering runt knappen
         toDoBtn.setFocusable(false);
