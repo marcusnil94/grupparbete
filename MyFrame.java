@@ -50,25 +50,33 @@ public class MyFrame extends JFrame implements ActionListener {
 
         addBtn = new JButton("Lägg till Todo");
         addBtn.addActionListener(this);
+        addBtn.setFocusable(false);
 
         exitBtn = new JButton("Avsluta");
         exitBtn.addActionListener(e -> System.out.println("Avsluta"));
         exitBtn.addActionListener(e -> System.exit(0));
+        exitBtn.setFocusable(false);
 
         editBtn = new JButton("Edit");
         editBtn.addActionListener(this);
         editBtn.setPreferredSize(new Dimension(190, 200));
+        editBtn.setFocusable(false);
 
         doneBtn = new JButton("Done");
         doneBtn.addActionListener(this);
         doneBtn.setPreferredSize(new Dimension(190, 200));
+        doneBtn.setFocusable(false);
 
         historyBtn = new JButton("Historik");
         historyBtn.addActionListener(this);
+        historyBtn.setFocusable(false);
+
         // historyBtn.addActionListener(e -> System.out.println("Historik"));
 
         editTodoBtn = new JButton("Edit");
         editTodoBtn.addActionListener(this);
+        editTodoBtn.setFocusable(false);
+
         // editTodoBtn.addActionListener(e -> System.out.println("edit Todo"));
 
         JPanel panelHeader = new JPanel();
