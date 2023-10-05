@@ -43,12 +43,12 @@ public class MyFrame extends JFrame implements ActionListener {
     MyFrame() {
 
         textField = new JTextField(20); // Textinmatning komponent
-        // textArea = new JTextArea(32, 15); // //Visnings komponent av texten
         todoListModel = Lista.getMyFrameListModel();
         todoList = new JList<>(todoListModel);
         JScrollPane scroll = new JScrollPane(todoList);
-        scroll.setPreferredSize(new Dimension(270, 540));
-        todoList.setFont(new Font("sans serif",Font.BOLD, 17));
+        scroll.setPreferredSize(new Dimension(250, 510));
+        todoList.setFont(new Font("sans serif", Font.BOLD, 17));
+        scroll.setBorder(null);
 
         addBtn = new JButton("Lägg till Todo");
         addBtn.addActionListener(this);
@@ -74,13 +74,11 @@ public class MyFrame extends JFrame implements ActionListener {
         historyBtn.setFocusable(false);
 
         // historyBtn.addActionListener(e -> System.out.println("Historik"));
-
         editTodoBtn = new JButton("Edit");
         editTodoBtn.addActionListener(this);
         editTodoBtn.setFocusable(false);
 
         // editTodoBtn.addActionListener(e -> System.out.println("edit Todo"));
-
         JPanel panelHeader = new JPanel();
         panelLeft = new JPanel();
 
@@ -93,11 +91,10 @@ public class MyFrame extends JFrame implements ActionListener {
         panelBottom.setPreferredSize(new Dimension(500, 60));
         panelBottom.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-        panelLeft.setBackground(Color.white);
-        panelHeader.setBackground(new Color(196,220,202));
-        panelBottom.setBackground(new Color(196,220,202));
-        panelRight.setBackground(new Color(235,240,228));
-
+        panelHeader.setBackground(new Color(196, 220, 202));
+        panelBottom.setBackground(new Color(196, 220, 202));
+        panelRight.setBackground(new Color(235, 240, 228));
+        panelLeft.setBackground(new Color(235, 240, 228));
 
         panelHeader.add(addBtn);
         panelRight.add(editBtn);
