@@ -46,29 +46,34 @@ public class MyFrame extends JFrame implements ActionListener {
         todoListModel = Lista.getMyFrameListModel();
         todoList = new JList<>(todoListModel);
         JScrollPane scroll = new JScrollPane(todoList);
-        scroll.setPreferredSize(new Dimension(270, 510));
+        scroll.setPreferredSize(new Dimension(270, 540));
 
         addBtn = new JButton("Lägg till Todo");
         addBtn.addActionListener(this);
+        
 
         exitBtn = new JButton("Avsluta");
         exitBtn.addActionListener(e -> System.out.println("Avsluta"));
         exitBtn.addActionListener(e -> System.exit(0));
-
+        
         editBtn = new JButton("Edit");
         editBtn.addActionListener(this);
         editBtn.setPreferredSize(new Dimension(190, 200));
+      
 
         doneBtn = new JButton("Done");
         doneBtn.addActionListener(this);
         doneBtn.setPreferredSize(new Dimension(190, 200));
+       
 
         historyBtn = new JButton("Historik");
         historyBtn.addActionListener(this);
+        historyBtn.setFocusable(false);
         // historyBtn.addActionListener(e -> System.out.println("Historik"));
 
         editTodoBtn = new JButton("Edit");
         editTodoBtn.addActionListener(this);
+        editBtn.setFocusable(false);
         // editTodoBtn.addActionListener(e -> System.out.println("edit Todo"));
 
         JPanel panelHeader = new JPanel();
@@ -79,14 +84,14 @@ public class MyFrame extends JFrame implements ActionListener {
 
         panelHeader.setPreferredSize(new Dimension(500, 60));
         panelLeft.setPreferredSize(new Dimension(280, 380));
-        panelRight.setPreferredSize(new Dimension(200, 380));
+        panelRight.setPreferredSize(new Dimension(220, 380));
         panelBottom.setPreferredSize(new Dimension(500, 60));
         panelBottom.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
         panelLeft.setBackground(Color.white);
-        panelHeader.setBackground(Color.GRAY);
-        panelRight.setBackground(Color.red);
-        panelBottom.setBackground(Color.LIGHT_GRAY);
+        panelHeader.setBackground(new Color(196,220,202));
+        panelRight.setBackground(new Color(235,240,228));
+        panelBottom.setBackground(new Color(196,220,202));
 
         panelHeader.add(addBtn);
         panelRight.add(editBtn);
@@ -105,7 +110,7 @@ public class MyFrame extends JFrame implements ActionListener {
 
         frame = new JFrame();
         frame.setTitle("Att göra, Grupp 4");
-        frame.setLayout(new BorderLayout(10, 10));
+        frame.setLayout(new BorderLayout(0, 0));
         frame.setSize(500, 700);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);

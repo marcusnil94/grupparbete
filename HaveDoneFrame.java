@@ -60,8 +60,8 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
 
         // Bestämmer färger på panels
         panelLeft.setBackground(Color.white);
-        panelHeader.setBackground(Color.GRAY);
-        panelBottom.setBackground(Color.LIGHT_GRAY);
+        panelHeader.setBackground(new Color(196,220,202));
+        panelBottom.setBackground(new Color(196,220,202));
 
         // Tar bort markering runt knappen
         toDoBtn.setFocusable(false);
@@ -81,7 +81,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         // Ritar ut frame
         frame = new JFrame();
         frame.setTitle("Har Gjort, Grupp 4");
-        frame.setLayout(new BorderLayout(10, 10));
+        frame.setLayout(new BorderLayout(0, 0));
         frame.setSize(500, 700);
         frame.setResizable(false);
         frame.setIconImage(frameIcon.getImage());
