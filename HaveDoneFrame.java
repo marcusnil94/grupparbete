@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,6 +10,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,6 +20,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
     JButton exitBtn;
     JButton toDoBtn;
     JFrame frame;
+    JLabel historyTitle;    
 
     ImageIcon frameIcon = new ImageIcon("ikoner/grupp4Icon.png");
     ImageIcon homeIcon = new ImageIcon("ikoner/homeIcon.png");
@@ -33,6 +36,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         historyList = new JList<>(historyListModel);
         JScrollPane scrollHistory = new JScrollPane(historyList);
         scrollHistory.setPreferredSize(new Dimension(400, 510));
+        historyList.setFont(new Font("sans serif",Font.BOLD, 17));
 
         // Skapar knappar
         toDoBtn = new JButton("Hem");
@@ -48,6 +52,11 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         JPanel panelLeft = new JPanel();
         JPanel panelBottom = new JPanel();
 
+        //Text för header
+        historyTitle = new JLabel("Avklarade uppgifter");
+        historyTitle.setFont(new Font("serif", Font.PLAIN, 33));
+        panelHeader.add(historyTitle);
+
         // lägger till upddaterade listan i panelLeft och uppdaterar fönstret
         panelLeft.add(scrollHistory);
         panelLeft.revalidate();
@@ -60,8 +69,8 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
 
         // Bestämmer färger på panels
         panelLeft.setBackground(Color.white);
-        panelHeader.setBackground(Color.GRAY);
-        panelBottom.setBackground(Color.LIGHT_GRAY);
+        panelHeader.setBackground(new Color(196,220,202));
+        panelBottom.setBackground(new Color(196,220,202));
 
         // Tar bort markering runt knappen
         toDoBtn.setFocusable(false);
@@ -81,7 +90,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         // Ritar ut frame
         frame = new JFrame();
         frame.setTitle("Har Gjort, Grupp 4");
-        frame.setLayout(new BorderLayout(10, 10));
+        frame.setLayout(new BorderLayout(0, 0));
         frame.setSize(500, 700);
         frame.setResizable(false);
         frame.setIconImage(frameIcon.getImage());
