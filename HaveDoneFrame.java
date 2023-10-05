@@ -59,7 +59,7 @@ public class HaveDoneFrame extends JFrame implements ActionListener {
         panelBottom.setPreferredSize(new Dimension(500, 60));
 
         // Bestämmer färger på panels
-        panelLeft.setBackground(Color.white);
+        panelLeft.setBackground(new Color(255, 255 , 255));
         panelHeader.setBackground(new Color(196,220,202));
         panelBottom.setBackground(new Color(196,220,202));
 

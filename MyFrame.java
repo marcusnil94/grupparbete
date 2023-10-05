@@ -88,7 +88,7 @@ public class MyFrame extends JFrame implements ActionListener {
         panelBottom.setPreferredSize(new Dimension(500, 60));
         panelBottom.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-        panelLeft.setBackground(Color.white);
+        panelLeft.setBackground(new Color(255,255,255));
         panelHeader.setBackground(new Color(196,220,202));
         panelRight.setBackground(new Color(235,240,228));
         panelBottom.setBackground(new Color(196,220,202));
